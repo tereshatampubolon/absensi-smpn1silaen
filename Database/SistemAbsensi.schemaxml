@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">smpn_1_silaen</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="absensi" view="colnames">
+<left>160</left>
+<top>10</top>
+<width>107</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `absensi` (
+  `id_absensi` char(24) NOT NULL,
+  `kode_guru` varchar(255) NOT NULL,
+  `id_jadwal` char(5) NOT NULL,
+  `kelas` char(5) NOT NULL,
+  PRIMARY KEY (`id_absensi`),
+  KEY `kode_guru` (`kode_guru`),
+  KEY `id_jadwal` (`id_jadwal`),
+  CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`kode_guru`) REFERENCES `guru` (`kode_guru`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `absensi_ibfk_2` FOREIGN KEY (`id_jadwal`) REFERENCES `jadwal` (`id_jadwal`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="akun" view="colnames">
+<left>501</left>
+<top>363</top>
+<width>114</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `akun` (
+  `username` varchar(255) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL,
+  `role` int(11) NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="guru" view="colnames">
+<left>331</left>
+<top>99</top>
+<width>146</width>
+<height>204</height>
+<sql_create_table>CREATE TABLE `guru` (
+  `kode_guru` char(24) NOT NULL,
+  `NIK` char(24) NOT NULL,
+  `Username_akun` varchar(255) NOT NULL,
+  `Nama` varchar(255) NOT NULL,
+  `Bidang_Pelajaran` varchar(50) DEFAULT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `tempat_lahir` varchar(50) DEFAULT NULL,
+  `alamat` varchar(255) NOT NULL,
+  PRIMARY KEY (`kode_guru`),
+  KEY `Username_akun` (`Username_akun`),
+  CONSTRAINT `guru_ibfk_1` FOREIGN KEY (`Username_akun`) REFERENCES `akun` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="jadwal" view="colnames">
+<left>533</left>
+<top>4</top>
+<width>123</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `jadwal` (
+  `id_jadwal` char(8) NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_berakhir` time NOT NULL,
+  `kode_guru` char(24) NOT NULL,
+  `kelas` char(4) NOT NULL,
+  PRIMARY KEY (`id_jadwal`),
+  KEY `kode_guru` (`kode_guru`),
+  KEY `kelas` (`kelas`),
+  CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`kode_guru`) REFERENCES `guru` (`kode_guru`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`nama_kelas`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="kelas" view="colnames">
+<left>818</left>
+<top>48</top>
+<width>123</width>
+<height>146</height>
+<sql_create_table>CREATE TABLE `kelas` (
+  `nama_kelas` char(4) NOT NULL,
+  `walikelas` varchar(255) NOT NULL,
+  `jumlah_siswa` int(11) NOT NULL,
+  `nama_ketua` varchar(255) NOT NULL,
+  PRIMARY KEY (`nama_kelas`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="orangtua" view="colnames">
+<left>825</left>
+<top>253</top>
+<width>150</width>
+<height>282</height>
+<sql_create_table>CREATE TABLE `orangtua` (
+  `no_KK` varchar(50) NOT NULL,
+  `NIK_ayah` varchar(255) NOT NULL,
+  `nama_Ayah` varchar(255) NOT NULL,
+  `pekerjaan_Ayah` varchar(50) NOT NULL,
+  `penghasilan_Ayah` int(11) NOT NULL,
+  `no_telepon_Ayah` int(11) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `NIK_Ibu` varchar(255) NOT NULL,
+  `nama_Ibu` varchar(255) NOT NULL,
+  `pekerjaan_Ibu` varchar(50) NOT NULL,
+  `penghasilan_Ibu` int(11) NOT NULL,
+  `no_telepon_Ibu` int(11) NOT NULL,
+  PRIMARY KEY (`no_KK`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="siswa" view="colnames">
+<left>640</left>
+<top>270</top>
+<width>120</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `siswa` (
+  `NISN` char(10) NOT NULL,
+  `Nama` varchar(255) NOT NULL,
+  `kelas` char(4) NOT NULL,
+  `tempat_lahir` varchar(255) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `jlh_saudara` int(11) NOT NULL,
+  `anak_ke` int(11) NOT NULL,
+  `no_KK` varchar(50) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  PRIMARY KEY (`NISN`),
+  KEY `kelas` (`kelas`),
+  KEY `no_KK` (`no_KK`),
+  CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`kelas`) REFERENCES `kelas` (`nama_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`no_KK`) REFERENCES `orangtua` (`no_KK`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="staf_tata_usaha" view="colnames">
+<left>41</left>
+<top>335</top>
+<width>138</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `staf_tata_usaha` (
+  `NIK` varchar(255) NOT NULL,
+  `Nama` varchar(255) NOT NULL,
+  `tempat_lahir` varchar(255) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `username_akun` varchar(255) NOT NULL,
+  KEY `username_akun` (`username_akun`),
+  CONSTRAINT `staf_tata_usaha_ibfk_1` FOREIGN KEY (`username_akun`) REFERENCES `akun` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="status_absensi_siswa" view="colnames">
+<left>1</left>
+<top>203</top>
+<width>106</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `status_absensi_siswa` (
+  `kehadiran` char(24) NOT NULL,
+  `id_absensi` char(24) NOT NULL,
+  `NISN` char(10) NOT NULL,
+  `tanggal` date NOT NULL,
+  PRIMARY KEY (`id_absensi`,`NISN`),
+  KEY `NISN` (`NISN`),
+  CONSTRAINT `status_absensi_siswa_ibfk_1` FOREIGN KEY (`id_absensi`) REFERENCES `absensi` (`id_absensi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `status_absensi_siswa_ibfk_2` FOREIGN KEY (`NISN`) REFERENCES `siswa` (`NISN`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

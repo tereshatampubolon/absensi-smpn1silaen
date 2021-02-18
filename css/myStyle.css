@@ -1,0 +1,141 @@
+.content{
+	background-color: #f7faff;
+}
+.box-shadow{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    border: 0px solid black;
+}
+.menu{
+    min-height:80%;
+    /* margin-left:0px -25px 0px -25px; */
+    background-color:#3d3f40;
+}
+.kelas
+{
+    height: 150px;
+    width: 200px;
+    margin: 10px ;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 50px;
+    padding:40px 40px 40px 40px;
+    border-radius: 15px;
+}
+.menu > .list
+{
+    font-size: 20px;
+    margin-top: 5px;
+    border-bottom: 2px solid grey;
+    text-align: center;
+}
+.bergetar{
+    transition: 1s;
+    cursor: pointer;
+    margin-top:20px;
+}
+.bergetar:hover{
+    margin-left:40px;
+    transform: rotate(7deg);
+    transition: 0.8s;
+}
+.bergetar:active{
+    transform: translateX(10px);
+    transform: translateY(20px);
+}
+.geser-kanan{
+    transition: 2s;
+}
+.geser-kanan:hover{
+    margin-left:100px;
+    transition: 1.6s;
+}
+.memanjang{
+    transition: 1s;
+}
+.memanjang:hover{
+    transition: 0.8s;
+    width: 270px;
+}
+.btn-success:active{
+    transform: translateY(3px);
+    box-shadow: 0px 3px 5px 0px black;
+}
+body{
+    background-image: url('images/corak.png')
+}
+a{
+    color:whitesmoke;
+    text-decoration: none;
+}
+.breadcrumb{
+    margin-top:10px;
+    background-color: #3d3f40;
+    color:white;
+    transition: 0.5s;
+    font-size:13px;
+}
+.breadcrumb:hover{
+    background-color: black;
+    color:black;
+    transition: 0.8s;
+}
+.breadcrumb > a:hover{
+    background-color: white;
+    color:black;
+}
+
+/* CSS Teresha */
+
+.form-login{
+    margin-top: 10%;
+    height: 55%;
+}
+.outter-form-login{
+    padding: 30px;
+    background: #ffffff;
+    position: relative;
+    border-radius: 5px;
+}
+.logo-login{
+    position: absolute;
+    color: #FFFFFF;
+    padding: 10px 18px;
+    top: -40px;
+    border-radius: 50%;
+    left: 10%;
+}
+.inner-login .form-control{
+    background: #EEEEEE;
+}
+h2.title-login{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.btn-custom-green{
+    background-color: #000000;
+    color: #ffffff;
+}
+.btn-custom-green:hover{
+    background: #787878;
+    color: #000000;
+}
+
+.grad{
+    background: linear-gradient(-90deg,#48aafb, white);
+}
+
+td{
+    text-align: left;
+    height:40px;
+    padding:0px 5px 0px 10px;;
+}
+.td_menu{
+    font-size:20px;
+    color:white;
+    border-bottom:2px solid grey;
+}
+.td_menu > a{
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    text-decoration: none;
+}

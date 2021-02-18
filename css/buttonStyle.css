@@ -1,0 +1,68 @@
+input[type="radio"]{
+    display:none;
+}
+
+input[type="radio"] + label::before {
+    color:white;
+    display: inline-block;
+    font-size: 15px;
+    height:30px;
+    width:80px;
+    border-radius: 7px;
+    line-height: 20px;
+    margin: 5px 6px 0 0;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+/* Each Button Style */
+
+input[type="radio"][class="btn_hadir"] + label::before{
+    background-color:blueviolet;
+    content: "hadir";
+}
+input[type="radio"][class="btn_sakit"] + label::before{
+    background-color:blue;
+    content: "sakit";
+}
+input[type="radio"][class="btn_izin"] + label::before{
+    background-color:red;
+    content: "izin";
+}
+input[type="radio"][class="btn_alpha"] + label::before {
+    background-color:green; 
+    content:"alpha";
+}
+
+/* If Each Button is Checked */
+
+input[type="radio"]:checked + label::before,input[type="radio"]:hover + label::before{
+    background-color: white;
+    transition: 0.8s;
+}
+
+input[type="radio"][class="btn_hadir"]:checked + label::before,input[type="radio"][class="btn_hadir"]:hover+ label::before{
+    color:blueviolet;
+    border: 5px solid blueviolet;
+    content: "hadir";
+}
+
+input[type="radio"][class="btn_sakit"]:checked + label::before,input[type="radio"][class="btn_sakit"]:hover+ label::before{
+    color:blue;
+    border: 5px solid blue;
+    content: "sakit";
+}
+
+input[type="radio"][class="btn_izin"]:checked + label::before,input[type="radio"][class="btn_izin"]:hover+ label::before{
+    color:red;
+    border: 5px solid red;
+    content: "izin";
+}
+
+input[type="radio"][class="btn_alpha"]:checked + label::before,input[type="radio"][class="btn_alpha"]:hover+ label::before{
+    color: green;
+    border: 5px solid green;
+    content: "alpha";
+}
